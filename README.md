@@ -1,37 +1,37 @@
 # JavaBootCamp
 
-Module 1: Java Fundamentals
+🔹 Module 1: Java Fundamentals
 
-Variables
+✔ Variables
 
-Conditionals
+✔ Conditionals
 
-Functions
+✔ Functions
 
-Loops
+✔ Loops
 
-Arrays
+✔ Arrays
 
-Module 2: Object-Oriented Programming
+🔸 Module 2: Object-Oriented Programming
 
-Objects
+✔ Objects
 
-Immutable Objects
+✔ Immutable Objects
 
-List Collections
+✔ List Collections
 
-Map Collections
+✔ Map Collections
 
-Exception Handling
+✔ Exception Handling
 
-Enums
+✔ Enums
 
-Inheritance
+✔ Inheritance
 
-Higher-order Functions
+✔ Higher-order Functions
 
-Lambda Expressions
+✔ Lambda Expressions
 
-Stream Operations
+✔ Stream Operations
 
-Interfaces
+✔ Interfaces
