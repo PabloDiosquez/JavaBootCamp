@@ -1,2 +1,37 @@
 # JavaBootCamp
-Repository on Java Fundamentals: Basic syntax, data types, variables, conditionals, functions, data structures, packages, objects, etc.
+
+Module 1: Java Fundamentals
+
+Variables
+
+Conditionals
+
+Functions
+
+Loops
+
+Arrays
+
+Module 2: Object-Oriented Programming
+
+Objects
+
+Immutable Objects
+
+List Collections
+
+Map Collections
+
+Exception Handling
+
+Enums
+
+Inheritance
+
+Higher-order Functions
+
+Lambda Expressions
+
+Stream Operations
+
+Interfaces
