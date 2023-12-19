@@ -45,10 +45,10 @@ public class SwitchStatements {
                 System.out.println("Move on!"); 
                 break;
             case "🟡":
-                System.out.println("Carefully..."); 
+                System.out.println("Slow down..."); 
                 break;   
             case "🔴":
-                System.out.println("Stop"); 
+                System.out.println("Stop!"); 
                 break;
         }
     
