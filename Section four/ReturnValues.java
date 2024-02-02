@@ -55,7 +55,13 @@ public class ReturnValues {
         }
     }
 
-    public static void printArea(double length, double width){
+    /**
+     * The printArea method prints a formatted message about the area of a rectangle with given length and width.
+     *
+     * @param length The length of the rectangle.
+     * @param width  The width of the rectangle.
+     */
+    public static void printArea(double length, double width) {
         System.out.println(String.format("A rectangle with a length %s and a width %s has an area %s", length, width, calculateArea(length, width)));
     }
 }
