@@ -14,6 +14,7 @@ public class ReturnValues {
         double area2 = calculateArea(1.6, 3.86);
         double area3 = calculateArea(3.1, 4.5);
 
+        // Example usage of explainArea method
         String englishExplanation = explainArea("English");
     }
 
@@ -23,21 +24,30 @@ public class ReturnValues {
      * @param length The length of the rectangle.
      * @param width  The width of the rectangle.
      * @return The calculated area.
+     * @throws IllegalArgumentException If either length or width is less than 0.
      */
     public static double calculateArea(double length, double width) {
-        if(length < 0 || width < 0){
-            System.out.println("INVALID DIMENSIONS");
-            System.exit(0);
+        // Check for invalid dimensions
+        if (length < 0 || width < 0) {
+            throw new IllegalArgumentException("Length and width must be non-negative values.");
         }
+        
+        // Calculate and return the area
         return length * width;
     }
 
-    public static String explainArea(String language){
+    /**
+     * The explainArea method provides a language-specific explanation of how the area is calculated.
+     *
+     * @param language The language for which to provide an explanation.
+     * @return A string with an explanation of the area calculation in the specified language.
+     */
+    public static String explainArea(String language) {
         switch (language) {
             case "English":
                 return "Area equals length * width";
             case "French":
-                return "La surface est egale a la longueur * la largeur";
+                return "La surface est égale à la longueur * la largeur";
             case "Spanish":
                 return "Área es igual a largo * ancho";
             default:
