@@ -13,6 +13,8 @@ public class ReturnValues {
         double area1 = calculateArea(2.3, 3.5);
         double area2 = calculateArea(1.6, 3.86);
         double area3 = calculateArea(3.1, 4.5);
+
+        String englishExplanation = explainArea("English");
     }
 
     /**
@@ -23,6 +25,23 @@ public class ReturnValues {
      * @return The calculated area.
      */
     public static double calculateArea(double length, double width) {
+        if(length < 0 || width < 0){
+            System.out.println("INVALID DIMENSIONS");
+            System.exit(0);
+        }
         return length * width;
+    }
+
+    public static String explainArea(String language){
+        switch (language) {
+            case "English":
+                return "Area equals length * width";
+            case "French":
+                return "La surface est egale a la longueur * la largeur";
+            case "Spanish":
+                return "Área es igual a largo * ancho";
+            default:
+                return "Language not available";
+        }
     }
 }
