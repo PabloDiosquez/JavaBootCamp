@@ -11,11 +11,11 @@ public class ReturnValues {
     public static void main(String[] args) {
         // Calculate and store the areas for different sets of length and width
         double area1 = calculateArea(2.3, 3.5);
-        double area2 = calculateArea(1.6, 3.86);
-        double area3 = calculateArea(3.1, 4.5);
+        printArea(2.3, 3.5);
 
         // Example usage of explainArea method
         String englishExplanation = explainArea("English");
+        System.out.println(englishExplanation);
     }
 
     /**
@@ -53,5 +53,9 @@ public class ReturnValues {
             default:
                 return "Language not available";
         }
+    }
+
+    public static void printArea(double length, double width){
+        System.out.println(String.format("A rectangle with a length %s and a width %s has an area %s", length, width, calculateArea(length, width)));
     }
 }
