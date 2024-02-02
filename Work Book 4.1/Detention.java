@@ -1,25 +1,29 @@
+/**
+ * The Detention class represents a program that prints lines of a punishment message.
+ */
 public class Detention {
-    public static void main(String[] args) {
 
-        //what Bart did so far
-        System.out.println("I will not copy and paste code.");
-        System.out.println("I will use Camel Case when writing class names.");
-        System.out.println("I will use lower Camel Case when writing function names.");
-        System.out.println("I will use lower Camel Case when writing variables names.\n");
+  /**
+   * The main method of the Detention class, which is the entry point of the program.
+   *
+   * @param args Command-line arguments (not used in this program).
+   */
+  public static void main(String[] args) {
+      printLines();
+      printLines();
+      printLines();
+      printLines();
+      printLines();
+      printLines();
+  }
 
-        // Task 2 – call the function 6 times. 
-   }
-
-
-
-    //Task 1 - Make a function here. See the doc comment for details. 
-
-    /**    
-      * Funtion name: printLines
-      *
-      * Inside the function:
-      *   1. prints the four lines       
-      */
-
-
+  /**
+   * The printLines method prints lines of a punishment message to the console.
+   */
+  public static void printLines() {
+      System.out.println("I will not copy and paste code.");
+      System.out.println("I will use Camel Case when writing class names.");
+      System.out.println("I will use lower Camel Case when writing function names.");
+      System.out.println("I will use lower Camel Case when writing variable names.\n");
+  }
 }
