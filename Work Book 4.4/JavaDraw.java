@@ -1,25 +1,34 @@
 import java.util.Scanner;
 
+/**
+ * The JavaDraw class allows the user to choose an animal to draw and displays a simple ASCII art representation of the chosen animal.
+ */
 public class JavaDraw {
-    public static void main(String[] args) {
 
-        Scanner scan = new Scanner(System.in);
-        int choice;
-
-	System.out.print( "\nWhich animal would you like to draw?\n" );
-        System.out.println( "Write 1 for butterfly " );
-	System.out.println( "Write 2 for elephant  " );
-	System.out.println( "Write 3 for bear      " );
-        System.out.println( "Write 4 for snake     " );
-
-        choice = scan.nextInt();
-        scan.close();
-
-        draw(choice);
-    }
-
-
-       //Task 2 – Write a function 
+        /**
+         * The main method takes user input to determine which animal to draw and calls the draw method accordingly.
+         *
+         * @param args The command-line arguments (not used in this program).
+         */
+        public static void main(String[] args) {
+            // Scanner for user input
+            Scanner scan = new Scanner(System.in);
+            int choice;
+    
+            // Display options for the user to choose an animal
+            System.out.print("\nWhich animal would you like to draw?\n");
+            System.out.println("Write 1 for butterfly ");
+            System.out.println("Write 2 for elephant  ");
+            System.out.println("Write 3 for bear      ");
+            System.out.println("Write 4 for snake     ");
+    
+            // Read user's choice
+            choice = scan.nextInt();
+            scan.close();
+    
+            // Call the draw method with the user's choice
+            draw(choice);
+        }
 
     /**
      * Function name: draw - draws an animal that the user chooses.
@@ -47,6 +56,9 @@ public class JavaDraw {
         }
     }
 
+    /**
+     * Draws a butterfly using ASCII art.
+     */
     public static void butterfly(){
         System.out.println("  .==-.                   .-==.     ");
             System.out.println("   \\()8`-._  `.   .'  _.-'8()/     ");
@@ -61,6 +73,9 @@ public class JavaDraw {
             System.out.println("       \"\"--'         `--\"\"      ");
     }
 
+    /**
+     * Draws an elephant using ASCII art.
+     */
     public static void elephant(){
         System.out.println("       _..--\"\"-.                  .-\"\"--.._ ");
             System.out.println("   _.-'         \\ __...----...__ /         '-._");
@@ -82,6 +97,9 @@ public class JavaDraw {
             System.out.println("         \\_:_)   `\"--.....-'");
     }
 
+    /**
+     * Draws a bear using ASCII art.
+     */
     public static void bear(){
         System.out.println("            ___   .--. ");
             System.out.println("      .--.-\"   \"-' .- |");
@@ -105,6 +123,9 @@ public class JavaDraw {
             System.out.println("                      ``");
     }
 
+    /**
+     * Draws a snake using ASCII art.
+     */
     public static void snake(){
         System.out.println("         ,,'6''-,.");
             System.out.println("        <====,.;;--.");
