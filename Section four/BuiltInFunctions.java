@@ -1,3 +1,5 @@
+import java.util.random;
+
 public class BuiltInFunctions {
 
     public static void main(String[] args) {
@@ -10,7 +12,7 @@ public class BuiltInFunctions {
          */
         String message = "Hello, World!";
         // Write your code here
-
+        System.out.println(message);
 
         /**
          * Scenario 2
@@ -20,7 +22,8 @@ public class BuiltInFunctions {
          */
         String example = "Java";
         // Write your code here
-
+        int length = example.length();
+        System.out.println(length);
 
         /**
          * Scenario 3
@@ -30,6 +33,8 @@ public class BuiltInFunctions {
          */
         String upperCase = "JAVA";
         // Write your code here
+        String lowerCase = upperCase.toLowerCase();
+        System.out.println(lowerCase);
 
 
         /**
@@ -41,8 +46,8 @@ public class BuiltInFunctions {
          */
         String programming = "Java programming";
         // Write your code here
-
-
+        boolean doesStartWithPrefix = programming.startsWith("Java");
+        System.out.println("Does it start with the prefix? " + doesStartWithPrefix);
 
         /**
          * Scenario 5
@@ -54,7 +59,8 @@ public class BuiltInFunctions {
          */
         String original = "Java is fun!";
         // Write your code here
-
+        String updatedString = original.replace('a', 'e');
+        System.out.println(updatedString);
         
         /**
          * Scenario 6
@@ -66,7 +72,8 @@ public class BuiltInFunctions {
         
         double number = 9;
         // Write your code here
-
+        double squareRoot = Math.sqrt(number);
+        System.out.println("Square root of " + number + " is: " + squareRoot);
 
         /**
          * Scenario 7
@@ -79,7 +86,8 @@ public class BuiltInFunctions {
         double base = 2;
         double exponent = 3;
         // Write your code here
-
+        double power = Math.pow(base, exponent);
+        System.out.println(power);
 
         /**
          * Scenario 8
@@ -88,8 +96,8 @@ public class BuiltInFunctions {
          * @return randomNumber (double)
          */
         // Write your code here
-
-
+        double randomDecimal = Math.random();
+        System.out.println("Random number: " + randomDecimal);
 
         /**
          * Scenario 9
@@ -102,7 +110,7 @@ public class BuiltInFunctions {
         int number1 = 5;
         int number2 = 10;
         // Write your code here
-
-
+        int largerNumber = Math.max(number1, number2);
+        System.out.println("Max number: " + largerNumber);
     }
 }
