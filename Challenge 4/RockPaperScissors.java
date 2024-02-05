@@ -59,7 +59,7 @@ public class RockPaperScissors {
      * @return result (String)
      */
     public static String result(String yourChoice, String computerChoice) {
-        String result;
+        String result = "";
 
         // Check different game scenarios
         if (yourChoice.equals(computerChoice)) {
@@ -77,7 +77,8 @@ public class RockPaperScissors {
         ) {
             result = "You lose! 😖";
         } else {
-            result = "INVALID CHOICE";
+            System.out.println("INVALID CHOICE.");
+            System.exit(0);
         }
         return result;
     }
