@@ -4,17 +4,12 @@ public class AreaCalculator {
         System.out.println("This calculator lets you get the area of: ");
         System.out.println("1 - Square\n2 - Rectangle\n3 - Triangle\n4 - Circle\n");
 
-        
-        //Task 5 – Call area functions.
+        double square = areaSquare(2);
+        double rectangle = areaRectangle(1, 2);
+        double triangle = areaTriangle(1, 2);
+        double circle = areaCircle(2);
 
-        // double square = area of square with a side of 2.
-        // double rectangle = area of rectangle with a length of 1, and a width of 2. 
-        // double triangle = area of triangle with a base of 1, and a width of 2. 
-        // double circle = area of circle with a radius of 2. 
-
-
-        //Task 7 – Call a function that prints all the areas. 
-
+        printAreas(square, rectangle, triangle, circle);
     }
 
     /**
