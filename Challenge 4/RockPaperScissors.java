@@ -2,78 +2,71 @@ import java.util.Scanner;
 
 public class RockPaperScissors {
     public static void main(String[] args) {
-        
+        // Scanner for user input
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Let's play Rock Paper Scissors.");
         System.out.println("When I say 'shoot', Choose: rock, paper, or scissors.\n");
         System.out.println("Are you ready? Write 'yes' if you are.");
 
+        // Read user response
         String response = scan.nextLine();
-        if(response.toLowerCase().equals("yes")){
+
+        if (response.toLowerCase().equals("yes")) {
             System.out.println("Great!\nrock - paper - scissors, shoot!");
+
+            // Get user's choice
             String userChoice = scan.nextLine();
+
+            // Get computer's choice
             String computerChoice = computeChoice();
+
+            // Get game result
             String result = result(userChoice, computerChoice);
+
+            // Print the result
             printResult(userChoice, computerChoice, result);
 
         } else {
             System.out.println("Darn, some other time...!");
         }
-          
+
+        // Close the scanner
         scan.close();
     }
 
     /**
-     * Function name: computerChoice - picks randomly between rock paper and scissors
+     * Function name: computeChoice
+     * It picks randomly between rock, paper, and scissors.
      * @return a choice (String).
-     * 
-     * Inside the function:
-     *   1. Picks a random number between 0 and 2.
-     *   2. if 0: returns the choice 'rock'
-     *      if 1: returns the choice 'paper'
-     *      if 2: returns the choice 'scissors'
      */
-    public static String computeChoice(){
-        int randomNumber = (int)(Math.random()*3);
+    public static String computeChoice() {
+        // Generate a random number between 0 and 2
+        int randomNumber = (int) (Math.random() * 3);
         System.out.println(randomNumber);
+
+        // Map the random number to a choice
         switch (randomNumber) {
-            case 0: return "rock";
-            case 1: return "paper";
-            default: return "scissors";
+            case 0:
+                return "rock";
+            case 1:
+                return "paper";
+            default:
+                return "scissors";
         }
     }
 
     /**
-     * Function name: result - It returns the result of the game.
-     *  @param yourChoice (String)
-     *  @param computerChoice (String) 
-     *  @return result (String) 
-
-     * Inside the function:
-     *   
-     *   1. result is "You win!" if:
-     *
-     *       You: "rock"      Computer: "scissors"
-     *       You: "paper"     Computer: "rock"
-     *       You: "scissors"  Computer: "paper"
-     *
-     *   2. result is "You lose" if:
-     * 
-     *       Computer: "rock"      You: "scissors"
-     *       Computer: "paper"     You: "rock"
-     *       Computer: "scissors"  You: "paper"
-     *
-     *   3. result is "It's a tie" if: Your choice equals computer choice.
-     * 
-     * 
-     *   4. Otherwise, print "INVALID CHOICE" and exit the program.
-     *
+     * Function name: result
+     * It returns the result of the game.
+     * @param yourChoice (String)
+     * @param computerChoice (String)
+     * @return result (String)
      */
-
-     public static String result(String yourChoice, String computerChoice) {
+    public static String result(String yourChoice, String computerChoice) {
         String result;
-    
+
+        // Check different game scenarios
         if (yourChoice.equals(computerChoice)) {
             result = "It's a tie";
         } else if (
@@ -93,21 +86,15 @@ public class RockPaperScissors {
         }
         return result;
     }
- 
+
     /**
-     * Name: printResult - It prints everything (your choice, computer choice, result)
+     * Function name: printResult
+     * It prints everything (user's choice, computer's choice, and result).
      * @param yourChoice (String)
      * @param computerChoice (String)
      * @param result (String)
-     * 
-     * Inside the function:
-     * 
-     *  1. prints everything:
-     *      – prints: You chose: <your choice>
-     *      – prints: The computer chose: <computer choice>
-     *      – prints: <result>
      */
-    public static void printResult(String yourChoice, String computerChoice, String result){
+    public static void printResult(String yourChoice, String computerChoice, String result) {
         System.out.println("You chose: " + yourChoice);
         System.out.println("The computer chose: " + computerChoice);
         System.out.println(result);
