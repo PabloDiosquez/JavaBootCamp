@@ -19,7 +19,7 @@ public class RockPaperScissors {
             String userChoice = scan.nextLine();
 
             // Get computer's choice
-            String computerChoice = computeChoice();
+            String computerChoice = computerChoice();
 
             // Get game result
             String result = result(userChoice, computerChoice);
@@ -36,24 +36,19 @@ public class RockPaperScissors {
     }
 
     /**
-     * Function name: computeChoice
+     * Function name: computerChoice
      * It picks randomly between rock, paper, and scissors.
      * @return a choice (String).
      */
-    public static String computeChoice() {
+    public static String computerChoice() {
         // Generate a random number between 0 and 2
         int randomNumber = (int) (Math.random() * 3);
         System.out.println(randomNumber);
 
         // Map the random number to a choice
-        switch (randomNumber) {
-            case 0:
-                return "rock";
-            case 1:
-                return "paper";
-            default:
-                return "scissors";
-        }
+        if(randomNumber == 0) return "rock";
+        if(randomNumber == 1) return "paper";
+        return "scissors";
     }
 
     /**
