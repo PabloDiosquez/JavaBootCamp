@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * This class represents a simple sign-in process for a fictional application named "Javagram".
  * Users are prompted to enter their username and password, and the program checks if they match predefined credentials.
