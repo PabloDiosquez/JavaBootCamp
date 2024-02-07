@@ -1,70 +1,119 @@
 import java.util.Scanner;
 
-public class Pokerito {
+/**
+ * The Pockerito class implements a simple card game named Pockerito.
+ * It allows a player to draw cards and compares them with the dealer's cards.
+ */
+public class Pockerito {
+
+    /**
+     * The main method starts the Pockerito game.
+     */
     public static void main(String[] args) {
+        // Create a Scanner object to read user input
         Scanner scan = new Scanner(System.in);
 
-        System.out.println(">>Let's play Pokerito. Type anything when you're ready.\n" + 
-        "\n" + 
-        ">>It's like Poker, but lot simpler.\n" + 
-        ">>\n" + 
-        ">> There are two playersyou and the computer.\n" + 
-        ">> The dealer will giveach player one card.\n" + 
-        ">> Then, the dealer wildraw five cards (the rive\n" + 
-        ">> The player with thmost river matchewins!\n" + 
-        ">> If the matches arequal, everyone's winner!\n" + 
-        ">>\n" + 
-        ">> Ready? Type anythinif you are.");
+        // Explain the rules of the game
+        explainTheRules();
         scan.nextLine();
-        String userCard     = randomCard();
+
+        // Draw cards for the user and the computer
+        String userCard = randomCard();
         String computerCard = randomCard();
-        
-        System.out.println("Here's your card:");
-        System.out.println(userCard);
-        System.out.println("Here's the computer card:");
-        System.out.println(computerCard);
 
+        // Present the drawn cards to the user
+        presentTheCards(userCard, computerCard);
 
-        int yourMatches = 0;
-        int computerMatches = 0;
-
-        
+        // Prompt the user to continue
         System.out.println("Now, the dealer will draw five cards. Press enter to continue.");
         scan.nextLine();
-        
+
+        // Initialize variables to count matches
+        int yourMatches = 0;
+        int computerMatches = 0;
+        // Draw five cards for the dealer
         for (int i = 1; i < 6; i++) {
+            // Generate a random card for the dealer
             String card = randomCard();
 
+            // Print the dealer's drawn card
             System.out.println("Card: " + i);
             System.out.println(card);
 
-            if(userCard.equals(card)){
+            // Check if the user's card matches the drawn card
+            if (userCard.equals(card)) {
                 yourMatches++;
-            } 
-
-            if(computerCard.equals(card)){
+            }
+            // Check if the computer's card matches the drawn card
+            if (computerCard.equals(card)) {
                 computerMatches++;
             }
 
+            // Prompt the user to continue
             scan.nextLine();
         }
 
-        
-        // Get the winner
-        
+        // Print the number of matches for both the user and the computer
+        System.out.println("Your number of matches: " + yourMatches);
+        System.out.println("Computer number of matches: " + computerMatches);
+        // Determine and print the winner of the game
+        System.out.println(getTheWinner(yourMatches, computerMatches));
 
-        System.out.println("Your number of matches: " + yourMatches); 
-        System.out.println("Computer number of matches: " + computerMatches); 
-
-        if(yourMatches > computerMatches){
-            System.out.println("You win!");
-        } else if (computerMatches > yourMatches){
-            System.out.println("The computer wins!");
-        } else {
-            System.out.println("Everyone wins!");
-        }
-
+        // Close the Scanner object to prevent resource leak
         scan.close();
+    }
+
+    /**
+     * Explains the rules of the Pokerito game to the player.
+     * This method provides an overview of the game and instructions on how to play.
+     */
+    public static void explainTheRules() {
+        // Print the game instructions and rules
+        System.out.println(">>Let's play Pokerito. Type anything when you're ready.\n" +
+                "\n" +
+                ">>It's like Poker, but a lot simpler.\n" +
+                ">>\n" +
+                ">> There are two players - you and the computer.\n" +
+                ">> The dealer will give each player one card.\n" +
+                ">> Then, the dealer will draw five cards (the river).\n" +
+                ">> The player with the most river matches wins!\n" +
+                ">> If the matches are equal, everyone's a winner!\n" +
+                ">>\n" +
+                ">> Ready? Type anything if you are.");
+    }
+
+    /**
+     * Presents the drawn cards to the player.
+     * 
+     * @param userCard     the card drawn by the player
+     * @param computerCard the card drawn by the computer
+     */
+    public static void presentTheCards(String userCard, String computerCard) {
+        // Print the user's card
+        System.out.println("Here's your card:");
+        System.out.println(userCard);
+
+        // Print the computer's card
+        System.out.println("Here's the computer's card:");
+        System.out.println(computerCard);
+    }
+
+    /**
+     * Determines the winner of the game based on the number of matches.
+     * 
+     * @param userMatches     the number of matches for the player
+     * @param computerMatches the number of matches for the computer
+     * @return a string indicating the winner of the game
+     */
+    public static String getTheWinner(int userMatches, int computerMatches) {
+        // Compare the number of matches for the player and the computer
+        if (userMatches > computerMatches) {
+            return "User wins!";
+        } else if (computerMatches > userMatches) {
+            return "The computer wins";
+        }
+        // If the number of matches is equal, declare everyone as winners
+        return "Everyone wins!";
     }
 
     /**
