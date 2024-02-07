@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * This class represents a simple guessing game where the user tries to guess a secret number.
  */
