@@ -13,14 +13,23 @@ public class Blackjack {
         
         //Task 4 – Get two random cards.
         //       – Print them: \n You get a \n" + <randomCard> + "\n and a \n" + <randomCard>
+        int userCard1 = drawRandomCard();
+        int userCard2 = drawRandomCard();
+
+        System.out.println("You get a \n"+ cardString(userCard1) + "\nand a \n" + cardString(userCard2));
 
         //Task 5 – Print the sum of your hand value.
         //       – print: your total is: <hand value>
-
+        int handValue = userCard1+userCard2;
+        System.out.println("your total is: " + handValue);
         
         //Task 6 – Get two random cards for the dealer.
         //       – Print: The dealer shows \n" + <first card> + "\nand has a card facing down \n" + <facedown card>
         //       – Print: \nThe dealer's total is hidden
+        int dealerCard1 = drawRandomCard(); 
+        int dealerCard2 = drawRandomCard(); 
+        System.out.println("The dealer shows\n" + cardString(dealerCard1) + "\nand has a card facing down\n" + faceDown());
+        System.out.println("The dealer's total is hidden");
 
        
         //Task 8 – Keep asking the player to hit or stay (while loop).
@@ -175,13 +184,15 @@ public class Blackjack {
      *   3. Returns the user's option 
      */
     public static String hitOrStay(){
-        System.out.println("Hit or Stay?");
-        String userChoice = scan.nextLine();
-        while (!userChoice.equals("hit") && !userChoice.equals("stay")) {
+        String userChoice;
+        while (true) {
             System.out.println("Hit or Stay?");
             userChoice = scan.nextLine();
+
+            if(userChoice.equals("hit") || userChoice.equals("stay")){
+                return userChoice;
+            }
         }
-        return userChoice;
     }
 }
 
