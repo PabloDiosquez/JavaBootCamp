@@ -31,7 +31,6 @@ public class Blackjack {
         System.out.println("The dealer shows\n" + cardString(dealerCard1) + "\nand has a card facing down\n" + faceDown());
         System.out.println("The dealer's total is hidden");
 
-       
         //Task 8 – Keep asking the player to hit or stay (while loop).
         //       1. Every time the player hits
         //             – draw a new card.
@@ -40,9 +39,17 @@ public class Blackjack {
         //             - print: your new total is <total>
 
         //       2. Once the player stays, break the loop. 
-
-        
-        //For tasks 9 to 13, see the article: Blackjack Part II. 
+        int newCard;
+        while (true) {
+            if(hitOrStay().equals("hit")){
+                newCard = drawRandomCard();
+                System.out.println(cardString(newCard));
+                handValue += newCard;
+                System.out.println("Your new total is: " + handValue);
+            } else break;
+            
+        }
+ 
          scan.close();
 
     }
