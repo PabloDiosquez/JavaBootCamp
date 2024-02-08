@@ -18,22 +18,21 @@ public class Blackjack {
         int total = Math.min(card1, 10) + Math.min(card2, 10);
         System.out.println("Your total is: " + total);
         
-        //Task 6 – Get two random cards for the dealer.
-        //       – Print: The dealer shows \n" + <first card> + "\nand has a card facing down \n" + <facedown card>
-        //       – Print: \nThe dealer's total is hidden
         int dealerCard1 = drawRandomCard(); 
         int dealerCard2 = drawRandomCard(); 
         System.out.println("The dealer shows\n" + cardString(dealerCard1) + "\nand has a card facing down\n" + faceDown());
+        
+        int dealerTotal = Math.min(dealerCard1, 10) + Math.min(dealerCard2, 10); 
         System.out.println("The dealer's total is hidden");
+        
+        
+        // 1. Every time the player hits
+        // – draw a new card.
+        // – calculate their new total.
+        // – print: (new line) You get a (new line) <show new card>.
+        // - print: your new total is <total>
 
-        //Task 8 – Keep asking the player to hit or stay (while loop).
-        //       1. Every time the player hits
-        //             – draw a new card.
-        //             – calculate their new total.
-        //             – print: (new line) You get a (new line) <show new card>.
-        //             - print: your new total is <total>
-
-        //       2. Once the player stays, break the loop. 
+        //2. Once the player stays, break the loop. 
         int newCard;
         while (true) {
             if(hitOrStay().equals("hit")){
@@ -177,7 +176,7 @@ public class Blackjack {
         "  |_____|\n";
     }
     
-    /** Task 7 – make a function that asks the user to hit or stay.
+    /** 
      * Function name – hitOrStay
      * @return (String)
      *
@@ -188,15 +187,14 @@ public class Blackjack {
      *   3. Returns the user's option 
      */
     public static String hitOrStay(){
-        String userChoice;
+        String response;
         while (true) {
-            System.out.println("Hit or Stay?");
-            userChoice = scan.nextLine();
+            System.out.println("Would you like to hit or Stay?");
+            response = scan.nextLine();
 
-            if(userChoice.equals("hit") || userChoice.equals("stay")){
-                return userChoice;
+            if(response.equalsIgnoreCase("hit") || response.equalsIgnoreCase("stay")){
+                return response;
             }
         }
     }
 }
-
