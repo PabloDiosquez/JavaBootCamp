@@ -11,17 +11,12 @@ public class Blackjack {
         System.out.println("..Ready? Press anything to begin!");
         scan.nextLine();
         
-        //Task 4 – Get two random cards.
-        //       – Print them: \n You get a \n" + <randomCard> + "\n and a \n" + <randomCard>
-        int userCard1 = drawRandomCard();
-        int userCard2 = drawRandomCard();
+        int card1 = drawRandomCard();
+        int card2 = drawRandomCard();
+        System.out.println("You get a \n"+ cardString(card1) + "\nand a \n" + cardString(card2));
 
-        System.out.println("You get a \n"+ cardString(userCard1) + "\nand a \n" + cardString(userCard2));
-
-        //Task 5 – Print the sum of your hand value.
-        //       – print: your total is: <hand value>
-        int handValue = userCard1+userCard2;
-        System.out.println("your total is: " + handValue);
+        int total = Math.min(card1, 10) + Math.min(card2, 10);
+        System.out.println("Your total is: " + total);
         
         //Task 6 – Get two random cards for the dealer.
         //       – Print: The dealer shows \n" + <first card> + "\nand has a card facing down \n" + <facedown card>
@@ -44,8 +39,8 @@ public class Blackjack {
             if(hitOrStay().equals("hit")){
                 newCard = drawRandomCard();
                 System.out.println(cardString(newCard));
-                handValue += newCard;
-                System.out.println("Your new total is: " + handValue);
+                total += newCard;
+                System.out.println("Your new total is: " + total);
             } else break;
             
         }
@@ -160,13 +155,15 @@ public class Blackjack {
                         "  |o o%%|\n" +
                         "  | |%%%|\n" +
                         "  |_%%%O|\n";
-            default:
+            case 13:
                 return "   _____\n" +
                         "  |K  WW|\n" +
                         "  | o {)|\n" +
                         "  |o o%%|\n" +
                         "  | |%%%|\n" +
                         "  |_%%%>|\n";
+            default:
+                return "Not possible";
         }
     }
 
