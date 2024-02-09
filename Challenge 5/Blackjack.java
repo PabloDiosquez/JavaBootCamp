@@ -10,63 +10,87 @@ public class Blackjack {
         System.out.println("We shall see..");
         System.out.println("..Ready? Press anything to begin!");
         scan.nextLine();
-        
+
         int card1 = drawRandomCard();
         int card2 = drawRandomCard();
-        System.out.println("You get a \n"+ cardString(card1) + "\nand a \n" + cardString(card2));
+        System.out.println("You get a \n" + cardString(card1) + "\nand a \n" + cardString(card2));
 
         int total = Math.min(card1, 10) + Math.min(card2, 10);
         System.out.println("Your total is: " + total);
-        
-        int dealerCard1 = drawRandomCard(); 
-        int dealerCard2 = drawRandomCard(); 
-        System.out.println("The dealer shows\n" + cardString(dealerCard1) + "\nand has a card facing down\n" + faceDown());
-        
-        int dealerTotal = Math.min(dealerCard1, 10) + Math.min(dealerCard2, 10); 
-        System.out.println("The dealer's total is hidden");
-        
-        
-        // 1. Every time the player hits
-        // – draw a new card.
-        // – calculate their new total.
-        // – print: (new line) You get a (new line) <show new card>.
-        // - print: your new total is <total>
 
-        //2. Once the player stays, break the loop. 
+        int dealerCard1 = drawRandomCard();
+        int dealerCard2 = drawRandomCard();
+        System.out.println(
+                "The dealer shows\n" + cardString(dealerCard1) + "\nand has a card facing down\n" + faceDown());
+
+        int dealerTotal = Math.min(dealerCard1, 10) + Math.min(dealerCard2, 10);
+        System.out.println("The dealer's total is hidden");
+
         int newCard;
         while (true) {
-            if(hitOrStay().equals("hit")){
+            if (hitOrStay().equals("hit")) {
                 newCard = drawRandomCard();
                 System.out.println(cardString(newCard));
                 total += newCard;
                 System.out.println("Your new total is: " + total);
-            } else break;
-            
+
+                if (total > 21) {
+                    System.out.println("Bust! Player loses");
+                    System.exit(0);
+                }
+            } else
+                break;
         }
- 
-         scan.close();
+
+        System.out.println("Dealer's turn\nThe dealers cards are\n" + dealerCard1 + "\nand a \n" + dealerCard2);
+
+        int dealerNewCard;
+        while (true) {
+            if (dealerTotal > 17) {
+                break;
+            }
+            dealerNewCard = drawRandomCard();
+            System.out.println("Dealer gets a\n" + cardString(dealerNewCard));
+            dealerTotal += dealerNewCard;
+            System.out.println("Dealer's total is " + dealerTotal);
+        }
+
+        if (dealerTotal > 21) {
+            System.out.println("Bust! Dealer loses");
+            System.exit(0);
+        }
+
+        if (total > dealerTotal) {
+            System.out.println("Player wins!");
+        } else {
+            System.out.println("Dealer wins!");
+        }
+
+        scan.close();
 
     }
 
     /**
      * Function name – drawRandomCard
+     * 
      * @return (int)
      *
-     * Inside the function:
-     *   1. Gets a random number between 1 and 13.
-     *   2. Returns a card.
+     *         Inside the function:
+     *         1. Gets a random number between 1 and 13.
+     *         2. Returns a card.
      */
-    public static int drawRandomCard(){
-        return (int)(Math.random()*13 + 1);
+    public static int drawRandomCard() {
+        return (int) (Math.random() * 13 + 1);
     }
 
-    /** 
+    /**
      * Function name – cardString
+     * 
      * @param cardNumber (int)
      * @return (String)
      *
-     * Inside the function:
-     *   1. Returns a String drawing of the card.
+     *         Inside the function:
+     *         1. Returns a String drawing of the card.
      */
     public static String cardString(int cardNumber) {
         switch (cardNumber) {
@@ -167,32 +191,33 @@ public class Blackjack {
     }
 
     public static String faceDown() {
-        return
-        "   _____\n"+
-        "  |     |\n"+ 
-        "  |  J  |\n"+
-        "  | JJJ |\n"+
-        "  |  J  |\n"+
-        "  |_____|\n";
+        return "   _____\n" +
+                "  |     |\n" +
+                "  |  J  |\n" +
+                "  | JJJ |\n" +
+                "  |  J  |\n" +
+                "  |_____|\n";
     }
-    
-    /** 
+
+    /**
      * Function name – hitOrStay
+     * 
      * @return (String)
      *
-     * Inside the function:
-     *   1. Asks the user to hit or stay.
-     *   2. If the user doesn't enter "hit" or "stay", keep asking them to try again by printing:
-     *      Please write 'hit' or 'stay'
-     *   3. Returns the user's option 
+     *         Inside the function:
+     *         1. Asks the user to hit or stay.
+     *         2. If the user doesn't enter "hit" or "stay", keep asking them to try
+     *         again by printing:
+     *         Please write 'hit' or 'stay'
+     *         3. Returns the user's option
      */
-    public static String hitOrStay(){
+    public static String hitOrStay() {
         String response;
         while (true) {
-            System.out.println("Would you like to hit or Stay?");
+            System.out.println("Would you like to hit or stay?");
             response = scan.nextLine();
 
-            if(response.equalsIgnoreCase("hit") || response.equalsIgnoreCase("stay")){
+            if (response.equalsIgnoreCase("hit") || response.equalsIgnoreCase("stay")) {
                 return response;
             }
         }
