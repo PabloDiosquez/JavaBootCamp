@@ -1,9 +1,18 @@
 import java.util.Scanner;
 
+/**
+ * The Blackjack class implements a simple text-based Blackjack game.
+ */
 public class Blackjack {
 
+    /** Scanner object for user input. */
     public static Scanner scan = new Scanner(System.in);
 
+    /**
+     * The main method starts the Blackjack game.
+     * 
+     * @param args the command-line arguments
+     */
     public static void main(String[] args) {
         System.out.println("\nWelcome to Java Casino!");
         System.out.println("Do you have a knack for Black Jack?");
@@ -11,6 +20,7 @@ public class Blackjack {
         System.out.println("..Ready? Press anything to begin!");
         scan.nextLine();
 
+        // Draw initial cards for player and dealer
         int card1 = drawRandomCard();
         int card2 = drawRandomCard();
         System.out.println("You get a \n" + cardString(card1) + "\nand a \n" + cardString(card2));
@@ -28,7 +38,7 @@ public class Blackjack {
 
         int newCard;
         while (true) {
-            if (hitOrStay().equals("hit")) {
+            if (hitOrStay().equalsIgnoreCase("hit")) {
                 newCard = drawRandomCard();
                 System.out.println(cardString(newCard));
                 total += newCard;
@@ -67,7 +77,6 @@ public class Blackjack {
         }
 
         scan.close();
-
     }
 
     /**
