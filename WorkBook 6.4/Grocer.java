@@ -30,6 +30,7 @@ public class Grocer {
             if(store[i].equals(response)){
                 // Print the aisle number where the product is located
                 System.out.println("\nWe have that in aisle: " + i);
+                break;
             }
         }
         
