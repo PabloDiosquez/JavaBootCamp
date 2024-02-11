@@ -14,7 +14,7 @@ public class ReferenceTrap {
         String[] staffLastYear = {"Tommy", "Joel", "Ellie"};
         
         // Printing staffLastYear array
-        System.out.println(Arrays.toString(staffLastYear));
+        System.out.println("Staff last year: " + Arrays.toString(staffLastYear));
 
         // The state of a variable should not change because you updated another.
         // Solution: Make another array.
@@ -23,14 +23,16 @@ public class ReferenceTrap {
         String[] staffThisYear = new String[staffLastYear.length];
 
         // Copying elements from staffLastYear to staffThisYear
-        for (int i = 0; i < staffLastYear.length; i++) {
-            staffThisYear[i] = staffLastYear[i];
-        }
+        // for (int i = 0; i < staffLastYear.length; i++) {
+        //     staffThisYear[i] = staffLastYear[i];
+        // }
+
+        staffThisYear = Arrays.copyOf(staffLastYear, staffLastYear.length);
 
         // Updating a value in staffThisYear
         staffThisYear[1] = "Abby";
 
         // Printing staffThisYear array after modification
-        System.out.println(Arrays.toString(staffThisYear));
+        System.out.println("Staff this year: " + Arrays.toString(staffThisYear));
     }
 }
