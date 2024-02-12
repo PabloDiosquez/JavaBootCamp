@@ -17,6 +17,7 @@ public class RandomArray {
         }
         
         print2DArray(array);
+
     }
 
     /**
