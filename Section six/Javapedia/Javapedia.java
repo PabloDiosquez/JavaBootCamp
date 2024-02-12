@@ -1,6 +1,14 @@
 import java.util.Scanner;
 
+/**
+ * Javapedia class allows users to register historical figures and search for information about them.
+ */
 public class Javapedia {
+
+    /**
+     * The main method for registering historical figures and searching for information.
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("\n**********Javapedia**********");
@@ -14,16 +22,16 @@ public class Javapedia {
         for (int i = 0; i < figures.length; i++) {
             System.out.println("\n\tFigure " + (i+1)); 
 
-                System.out.print("\t - Name: ");
-                figures[i][0] = scan.nextLine();  
+            System.out.print("\t - Name: ");
+            figures[i][0] = scan.nextLine();  
 
-                System.out.print("\t - Date of birth: ");
-                figures[i][1] = scan.nextLine();
+            System.out.print("\t - Date of birth: ");
+            figures[i][1] = scan.nextLine();
             
-                System.out.print("\t - Occupation: ");
-                figures[i][2] = scan.nextLine();
+            System.out.print("\t - Occupation: ");
+            figures[i][2] = scan.nextLine();
              
-                System.out.print("\n");
+            System.out.print("\n");
         }
 
         System.out.println("These are the values you stored:"); 
@@ -38,14 +46,8 @@ public class Javapedia {
     }
 
     /**
-     * Function name: print2DArray
-     * @param array (String[][])
-     * 
-     * Inside the function
-     *  1. print the database
-     *     • a tab of space precedes each row.
-     *     • each value in database has one space from the other value. 
-     *     • print a new line.
+     * Prints the 2D array representing the database of historical figures.
+     * @param array 2D array containing historical figures' information.
      */
     public static void print2DArray(String[][] array){
         for (int i = 0; i < array.length; i++) {
@@ -56,14 +58,12 @@ public class Javapedia {
         }
     }
 
+    /**
+     * Searches the database for a historical figure by name and prints their information if found.
+     * @param array 2D array containing historical figures' information.
+     * @param name Name of the historical figure to search for.
+     */
     public static void searchByName(String[][] array, String name){
-        /*Task 5: Let the user search the database by name. 
-            If there's a match:
-              print(    tab of space    Name: <name>)
-              print(    tab of space    Date of birth: <date of birth>)
-              print(    tab of space    Occupation: <occupation>)
-
-        */
         for (int i = 0; i < array.length; i++) {
             if(array[i][0].equalsIgnoreCase(name)){
                 System.out.println("\tName: " + array[i][0]);
@@ -72,5 +72,4 @@ public class Javapedia {
             }
         }
     }
-
 }
