@@ -13,26 +13,6 @@ public class TDarrays {
      * @param args The command-line arguments (not used).
      */
     public static void main(String[] args) {
-        // int[][] grades = new int[3][4];
-
-        // // Harry's grades
-        // grades[0][0] = 72;
-        // grades[0][1] = 74;
-        // grades[0][2] = 78;
-        // grades[0][3] = 76;
-
-        // // Ron's grades
-        // grades[1][0] = 65;
-        // grades[1][1] = 64;
-        // grades[1][2] = 61;
-        // grades[1][3] = 67;
-
-        // // Hermione's grades
-        // grades[2][0] = 95;
-        // grades[2][1] = 98;
-        // grades[2][2] = 99;
-        // grades[2][3] = 100;
-
         // Declaring and initializing the two-dimensional array 'grades'
         int[][] grades = {
             {72, 74, 78, 76},   // Harry's grades
@@ -40,11 +20,47 @@ public class TDarrays {
             {95, 98, 99, 100}   // Hermione's grades
         };
 
-        // Displaying grades for each student
+        // Displaying grades for each student using Arrays.toString
         System.out.println("Harry: " + Arrays.toString(grades[0]));
         System.out.println("Ron: " + Arrays.toString(grades[1]));
         System.out.println("Hermione: " + Arrays.toString(grades[2]));
 
         System.out.println();
+
+        // Displaying grades for each student using loops
+        System.out.print("Harry's grades: ");
+        for (int i = 0; i < grades[0].length; i++) {
+            System.out.print(grades[0][i] + " ");
+        }
+
+        System.out.print("\nRon's grades: ");
+        for (int i = 0; i < grades[1].length; i++) {
+            System.out.print(grades[1][i] + " ");
+        }
+
+        System.out.print("\nHermione's grades: \n");
+        for (int i = 0; i < grades[2].length; i++) {
+            System.out.print(grades[2][i] + " ");
+        }
+
+        // Displaying grades for each student using nested loops
+        System.out.println("\nGrades:");
+        for (int i = 0; i < grades.length; i++) {
+            switch (i) {
+                case 0:
+                    System.out.print("Harry: ");
+                    break;
+                case 1:
+                    System.out.print("Ron: ");
+                    break;
+                case 2:
+                    System.out.print("Hermione: ");
+                    break;
+            }
+            for (int j = 0; j < grades[i].length; j++) {
+                System.out.print(grades[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
