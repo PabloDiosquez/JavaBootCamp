@@ -1,4 +1,12 @@
+/**
+ * This class generates a 2D array filled with random numbers and prints it.
+ */
 public class RandomArray {
+    
+    /**
+     * The main method creates a 2D array of random numbers and prints it.
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         int[][] array = new int[100][10];
 
@@ -9,29 +17,19 @@ public class RandomArray {
         }
         
         print2DArray(array);
-
     }
 
     /**
-     * Function name: randomNumber
-     * @return ( int )
-     * 
-     * Inside the function: 
-     *  - Return a random number between 0 and 99.
+     * Generates a random integer between 0 and 99.
+     * @return Random integer.
      */
     public static int randomNumber(){
         return (int)(Math.random()*100);
     }
 
     /**
-     * Function name: print2DArray
-     * 
-     * @param array ( int[][] )
-     * 
-     * Inside the function:
-     *  - 1. Nested loop:
-     *      - Inner Loop: System.out.print(array[i][j] + " ")
-     *      - After the inner loop completes: System.out.print("\n")
+     * Prints the given 2D array.
+     * @param array 2D array to be printed.
      */
     public static void print2DArray(int[][] array){
         for (int i = 0; i < array.length; i++) {
