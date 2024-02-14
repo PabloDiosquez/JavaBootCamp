@@ -11,18 +11,16 @@ public class TicTacToe {
         { '-', '-', '-' }
     };
 
-    System.out.println("\nLet's play tic tac toe");
     printBoard(board);
 
-    int[] response;
+    int[] spot;
     for (int i = 0; i < 9; i++) {
+      spot = askUser(board);
       if (i % 2 == 0) {
-        response = askUser(board);
-        updateBoard(board, response, 'X');
+        updateBoard(board, spot, 'X');
 
       } else {
-        response = askUser(board);
-        updateBoard(board, response, 'O');
+        updateBoard(board, spot, 'O');
       }
 
       int check = checkWin(board);
@@ -32,7 +30,7 @@ public class TicTacToe {
       } else if (check == -3) {
         System.out.println("O wins");
         break;
-      }
+      } 
     }
 
     scan.close();
@@ -52,7 +50,7 @@ public class TicTacToe {
    *              character
    */
   public static void printBoard(char[][] board) {
-    System.out.print("\n");
+    System.out.print("\nLet's play tic tac toe!\n\n");
     for (int i = 0; i < board.length; i++) {
       System.out.print("\t");
       for (int j = 0; j < board[i].length; j++) {
@@ -62,11 +60,10 @@ public class TicTacToe {
     }
   }
 
-  public static void updateBoard(char[][] board, int[] response, char turn) {
-    board[response[0]][response[1]] = turn;
+  public static void updateBoard(char[][] board, int[] spot, char turn) {
+    board[spot[0]][spot[1]] = turn;
     System.out.print("\033[H\033[2J");
     System.out.flush();
-    System.out.println("\nLet's play tic tac toe");
     printBoard(board);
   }
 
@@ -83,9 +80,14 @@ public class TicTacToe {
    * 
    */
   public static int[] askUser(char[][] board) {
-    System.out.print("Pick a row and column number: ");
-    int row = scan.nextInt();
-    int column = scan.nextInt();
+    int row, column;
+    while (true) {
+      System.out.print("Pick a row and column number: ");
+      row = scan.nextInt();
+      column = scan.nextInt();
+
+      if(board[row][column] != 'X' && board[row][column] != 'O') break;
+    }
 
     return new int[] { row, column };
   }
