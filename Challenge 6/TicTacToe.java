@@ -4,19 +4,38 @@ public class TicTacToe {
 
     static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
-        
+            char[][] board = {
+              {'-', '-', '-'},
+              {'-', '-', '-'},
+              {'-', '-', '-'}
+              };
+      
             System.out.println("\nLet's play tic tac toe");
 
-            //Task 1: Create an array with three rows of '_' characters.
-            String[][] board = {
-              {"-", "-", "-"},
-              {"-", "-", "-"},
-              {"-", "-", "-"}
-            };
 
-            //Task 2: Call the function printBoard();
+            printBoard(board);
+            
+            int[] response;
+            for (int i = 0; i < 9; i++) {
+              if(i % 2 == 0){
+                response = askUser(board);
+                board[response[0]][response[1]] = 'X';
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                System.out.println("\nLet's play tic tac toe");
+                printBoard(board);
+              } else {
+                response = askUser(board);
+                board[response[0]][response[1]] = 'O';
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                System.out.println("\nLet's play tic tac toe");
+                printBoard(board);
+              }
+              
+            }
 
-             
+
               /*
               {  Task 3: Loop through turns.
 
@@ -43,7 +62,7 @@ public class TicTacToe {
         }
 
 
-    /** Task 2 - Write a function that prints the board.
+    /**
      * Function name - printBoard()
      * @param board (char[][])
      * 
@@ -53,9 +72,19 @@ public class TicTacToe {
      *      • separate each row by two lines. 
      *      • each row precedes a tab of space
      *      • each character in the grid has one space from the other character
-     */        
+     */
+    public static void printBoard(char[][] board){
+      System.out.print("\n");
+      for (int i = 0; i < board.length; i++) {
+        System.out.print("\t");
+        for (int j = 0; j < board[i].length; j++) {
+          System.out.print(board[i][j] + " ");
+        }
+        System.out.print("\n\n");
+      }
+    }        
 
-   /** Task 4 - Write a function that lets the user choose a spot
+   /** 
      * Function name – askUser
      * @param board (char[][] board)
      * @return spot (int[])
@@ -66,6 +95,22 @@ public class TicTacToe {
      *   3. Return the row and column in an int[] array.
      * 
      */
+    public static int[] askUser(char[][] board){
+      int row;
+      int column;
+      while (true) {
+        System.out.print("Pick a row and column number: ");
+        row = scan.nextInt();
+        column = scan.nextInt();
+        
+        if(true){
+          break;
+        }
+      }
+      
+      
+      return new int[] {row, column};
+    }
 
     /** Task 6 - Write a function that determines the winner
      * Function name - checkWin 
