@@ -12,37 +12,27 @@ public class TicTacToe {
     };
 
     System.out.println("\nLet's play tic tac toe");
-
     printBoard(board);
 
     int[] response;
     for (int i = 0; i < 9; i++) {
       if (i % 2 == 0) {
         response = askUser(board);
-        board[response[0]][response[1]] = 'X';
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-        System.out.println("\nLet's play tic tac toe");
-        printBoard(board);
+        updateBoard(board, response, 'X');
         
       } else {
         response = askUser(board);
-        board[response[0]][response[1]] = 'O';
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-        System.out.println("\nLet's play tic tac toe");
-        printBoard(board);
+        updateBoard(board, response, 'O');
       }
 
       int check = checkWin(board);
-        if(check== 3){
-          System.out.println("X wins");
-          break;
-        } else if(check == -3){
-          System.out.println("O wins");
-          break;
-        }
-
+      if(check == 3){
+        System.out.println("X wins");
+        break;
+      } else if(check == -3){
+        System.out.println("O wins");
+        break;
+      }
     }
 
     scan.close();
@@ -72,30 +62,30 @@ public class TicTacToe {
     }
   }
 
+  public static void updateBoard(char[][] board, int[] response, char turn){
+        board[response[0]][response[1]] = turn;
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        System.out.println("\nLet's play tic tac toe");
+        printBoard(board);
+  }
+
   /**
    * Function name – askUser
    * 
    * @param board (char[][] board)
    * @return spot (int[])
    * 
-   *         Inside the function
-   *         1. Asks the user: - pick a row and column number:
-   *         2. Check if the spot is taken. If so, let the user choose again.
-   *         3. Return the row and column in an int[] array.
+   * Inside the function
+   *  1. Asks the user: - pick a row and column number:
+   *  2. Check if the spot is taken. If so, let the user choose again.
+   *  3. Return the row and column in an int[] array.
    * 
    */
   public static int[] askUser(char[][] board) {
-    int row;
-    int column;
-    while (true) {
-      System.out.print("Pick a row and column number: ");
-      row = scan.nextInt();
-      column = scan.nextInt();
-
-      if (true) {
-        break;
-      }
-    }
+    System.out.print("Pick a row and column number: ");
+    int row = scan.nextInt();
+    int column = scan.nextInt();
 
     return new int[] { row, column };
   }
@@ -122,30 +112,23 @@ public class TicTacToe {
     if(Math.abs(cols) == 3) return cols;
     
     int leftDiagonal = checkLeft(board); 
-    if(Math.abs(leftDiagonal) == 3) return cols;
+    if(Math.abs(leftDiagonal) == 3) return leftDiagonal;
     
     int rightDiagonal = checkRight(board);
-    if(Math.abs(rightDiagonal) == 3) return cols;
+    if(Math.abs(rightDiagonal) == 3) return rightDiagonal;
 
-    return -1;
+    return 0;
   }
 
   public static int checkRows(char[][] board) {
     int count = 0;
     for (int i = 0; i < board.length; i++) {
       for (int j = 0; j < board[i].length; j++) {
-        if(board[i][j] == 'X'){
-          count++;
-        } 
-
-        if(board[i][j] == 'O'){
-          count--;
-        }
-
-        if(count == 3 || count == -3){
-          return count;
-        }
+        if(board[i][j] == 'X') count++;
+        else if(board[i][j] == 'O') count--;
       }
+
+      if(count == 3 || count == -3) return count;
       count = 0;
     }
     return count;
@@ -154,19 +137,33 @@ public class TicTacToe {
 
 public static int checkColumns(char[][] board) {
     int count = 0;
+    for (int j = 0; j < board.length; j++) {
+      for (int i = 0; i < board[j].length; i++) {
+        if(board[i][j] == 'X') count++;
+        else if(board[i][j] == 'O') count--;
+      }
+      
+      if(count == 3 || count == -3) return count;
+      count = 0;
+    }
     return count;
 }
 
 
 public static int checkLeft(char[][] board) {
     int count = 0;
+    for (int i = 0; i < board.length; i++) {
+      if(board[i][i] == 'X') count++;
+      else if(board[i][i] == 'O') count--;
+    }
     return count;
 }
 
 
+// TODO 1
 public static int checkRight(char[][] board) {
-    int count = 0;
-    return count;
+  int count = 0;
+  return count;
 }
 
 }
