@@ -1,9 +1,17 @@
 import java.util.Scanner;
 
+/**
+ * This class represents a tic-tac-toe game.
+ */
 public class TicTacToe {
 
   static Scanner scan = new Scanner(System.in);
 
+  /**
+   * The main method of the program.
+   *
+   * @param args The command line arguments.
+   */
   public static void main(String[] args) {
     char[][] board = {
         { '-', '-', '-' },
@@ -13,41 +21,26 @@ public class TicTacToe {
 
     printBoard(board);
 
-    int[] spot;
+    // Let's play!
     for (int i = 0; i < 9; i++) {
-      spot = askUser(board);
       if (i % 2 == 0) {
-        updateBoard(board, spot, 'X');
+        updateBoard(board, askUser(board), 'X');
 
       } else {
-        updateBoard(board, spot, 'O');
+        updateBoard(board, askUser(board), 'O');
       }
 
-      int check = checkWin(board);
-      if (check == 3) {
-        System.out.println("X wins");
-        break;
-      } else if (check == -3) {
-        System.out.println("O wins");
-        break;
-      } 
+      checkWinCondition(checkWin(board));
     }
 
+    System.out.print("\nIt's a tie!");
     scan.close();
   }
 
   /**
-   * Function name - printBoard()
-   * 
-   * @param board (char[][])
-   * 
-   *              Inside the function:
-   *              1. print a new line.
-   *              2. print the board.
-   *              • separate each row by two lines.
-   *              • each row precedes a tab of space
-   *              • each character in the grid has one space from the other
-   *              character
+   * Prints the current state of the tic-tac-toe board.
+   *
+   * @param board The current state of the game board.
    */
   public static void printBoard(char[][] board) {
     System.out.print("\nLet's play tic tac toe!\n\n");
@@ -60,6 +53,13 @@ public class TicTacToe {
     }
   }
 
+  /**
+   * Updates the game board with the player's move.
+   *
+   * @param board The current state of the game board.
+   * @param spot  The row and column chosen by the player.
+   * @param turn  The player's symbol ('X' or 'O').
+   */
   public static void updateBoard(char[][] board, int[] spot, char turn) {
     board[spot[0]][spot[1]] = turn;
     System.out.print("\033[H\033[2J");
@@ -68,43 +68,43 @@ public class TicTacToe {
   }
 
   /**
-   * Function name – askUser
-   * 
-   * @param board (char[][] board)
-   * @return spot (int[])
-   * 
-   *         Inside the function
-   *         1. Asks the user: - pick a row and column number:
-   *         2. Check if the spot is taken. If so, let the user choose again.
-   *         3. Return the row and column in an int[] array.
-   * 
+   * Asks the user to pick a row and column.
+   *
+   * @param board The current state of the game board.
+   * @return An array containing the row and column chosen by the user.
    */
   public static int[] askUser(char[][] board) {
     System.out.print("Pick a row and column number: ");
     int row = scan.nextInt();
     int column = scan.nextInt();
     while (board[row][column] != '-') {
-
       System.out.print("Oops! Spot taken, try again: ");
       row = scan.nextInt();
       column = scan.nextInt();
     }
-
-    return new int[] { row, column };
+    return new int[]{row, column};
   }
 
   /**
-   * Function name - checkWin
-   * 
-   * @param board (char[][])
-   * @return count (int)
-   * 
-   *         Inside the function:
-   *         1. Make a count variable that starts at 0.
-   *         2. Check every row for a straight X or straight O (Task 7).
-   *         3. Check every column for a straight X or straight O (Task 8).
-   *         4. Check the left diagonal for a straight X or straight O (Task 9).
-   *         5. Check the right diagonal for a straight X or straight O (Task 10).
+   * Checks if there's a winner based on the current state of the game board.
+   *
+   * @param check The result of the game evaluation.
+   */
+  public static void checkWinCondition(int check) {
+    if (check == 3) {
+      System.out.println("X wins");
+      System.exit(0);
+    } else if (check == -3) {
+      System.out.println("O wins");
+      System.exit(0);
+    }
+  }
+
+  /**
+   * Evaluates the game board to determine if there's a winner.
+   *
+   * @param board The current state of the game board.
+   * @return An integer indicating the result of the game evaluation.
    */
   public static int checkWin(char[][] board) {
     int rows = checkRows(board);
@@ -126,6 +126,12 @@ public class TicTacToe {
     return 0;
   }
 
+  /**
+   * Checks the rows of the game board for a winning condition.
+   *
+   * @param board The current state of the game board.
+   * @return An integer indicating the result of the row check.
+   */
   public static int checkRows(char[][] board) {
     int count = 0;
     for (int i = 0; i < board.length; i++) {
@@ -143,6 +149,12 @@ public class TicTacToe {
     return count;
   }
 
+  /**
+   * Checks the columns of the game board for a winning condition.
+   *
+   * @param board The current state of the game board.
+   * @return An integer indicating the result of the column check.
+   */
   public static int checkColumns(char[][] board) {
     int count = 0;
     for (int i = 0; i < board.length; i++) {
@@ -160,6 +172,12 @@ public class TicTacToe {
     return count;
   }
 
+  /**
+   * Checks the left diagonal of the game board for a winning condition.
+   *
+   * @param board The current state of the game board.
+   * @return An integer indicating the result of the left diagonal check.
+   */
   public static int checkLeft(char[][] board) {
     int count = 0;
     for (int i = 0; i < board.length; i++) {
@@ -171,6 +189,12 @@ public class TicTacToe {
     return count;
   }
 
+  /**
+   * Checks the right diagonal of the game board for a winning condition.
+   *
+   * @param board The current state of the game board.
+   * @return An integer indicating the result of the right diagonal check.
+   */
   public static int checkRight(char[][] board) {
     int count = 0;
     for (int i = 0; i < board.length; i++) {
