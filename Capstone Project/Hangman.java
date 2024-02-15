@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Hangman {
 
     public static String[] words = {"ant", "baboon", "badger", "bat", "bear", "beaver", "camel",
@@ -66,13 +68,43 @@ public class Hangman {
     "     |\n" +
     " =========\n"};
 
+    static Scanner scan = new Scanner(System.in);
+
     public static void main(String[] args) {
+        String secretWord = randomWord(words);
+        int misses  = 0;
+        int guesses = 0;
+        String guess;
+        char[] missesLetters = new char[6];
+
+        System.out.print(gallows[misses]);
+        System.out.print("\nWord: ");
+        System.out.print("\t");
+        for (int i = 0; i < secretWord.length(); i++) {
+            System.out.print("_ ");
+        }
+        System.out.print("\n\nMisses: ");
+        for (char letter :missesLetters) {
+            System.out.print(letter);
+        }
+
+
+        System.out.print("\n\nGuess: ");
+        guess = scan.nextLine();
 
 
 
 
 
+    }
 
+    /**
+     * Function name: randomWord
+     * @param words
+     * @return
+     */
+    public static String randomWord(String[] words){
+        return words[(int)(Math.random()* words.length)];
     }
 
 }
