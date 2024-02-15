@@ -80,20 +80,20 @@ public class TicTacToe {
    * 
    */
   public static int[] askUser(char[][] board) {
-    int row, column;
-    while (true) {
-      System.out.print("Pick a row and column number: ");
+    System.out.print("Pick a row and column number: ");
+    int row = scan.nextInt();
+    int column = scan.nextInt();
+    while (board[row][column] != '-') {
+
+      System.out.print("Oops! Spot taken, try again: ");
       row = scan.nextInt();
       column = scan.nextInt();
-
-      if(board[row][column] != 'X' && board[row][column] != 'O') break;
     }
 
     return new int[] { row, column };
   }
 
   /**
-   * Task 6 - Write a function that determines the winner
    * Function name - checkWin
    * 
    * @param board (char[][])
@@ -145,11 +145,11 @@ public class TicTacToe {
 
   public static int checkColumns(char[][] board) {
     int count = 0;
-    for (int j = 0; j < board.length; j++) {
-      for (int i = 0; i < board[j].length; i++) {
-        if (board[i][j] == 'X')
+    for (int i = 0; i < board.length; i++) {
+      for (int j = 0; j < board[i].length; j++) {
+        if (board[j][i] == 'X')
           count++;
-        else if (board[i][j] == 'O')
+        else if (board[j][i] == 'O')
           count--;
       }
 
