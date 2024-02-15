@@ -74,6 +74,7 @@ public class Hangman {
     public static void main(String[] args) {
         String secretWord = randomWord(words);
         char[] letters = new char[secretWord.length()];
+        int guesses = 0;
         int misses = 0;
         String guess;
         char[] missesLetters = new char[6];
@@ -104,6 +105,14 @@ public class Hangman {
             if (secretWord.contains(String.valueOf(guess))) {
                 updateLetters(secretWord, letters, guess);
                 printLetters(letters);
+                guesses++;
+
+                if(guesses == secretWord.length()){
+                    System.out.println("Win!");
+                    System.exit(0);
+                }
+
+                
             } else {
                 updateMisses(missesLetters, guess, misses);
                 printMisses(missesLetters);
@@ -112,6 +121,8 @@ public class Hangman {
         }
 
     }
+
+    
 
     /**
      * Function name: randomWord
@@ -139,9 +150,16 @@ public class Hangman {
     }
 
 
-    public static void updateLetters(String secretWord, char[] letters, String guess){
-        int index = secretWord.indexOf(guess);
-        letters[index] = guess.charAt(0);
+    public static void updateLetters(String secretWord, char[] letters, String guess) {
+        char guessChar = guess.charAt(0); // Convertir la conjetura a un solo carácter
+        
+        int index = secretWord.indexOf(guessChar); // Encontrar la primera ocurrencia de la conjetura
+        
+        // Mientras haya ocurrencias de la conjetura en la palabra secreta
+        while (index != -1) {
+            letters[index] = guessChar; // Actualizar la letra en la posición correspondiente
+            index = secretWord.indexOf(guessChar, index + 1); // Encontrar la próxima ocurrencia
+        }
     }
 
     public static void printLetters(char[] letters){
