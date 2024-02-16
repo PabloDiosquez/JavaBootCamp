@@ -73,50 +73,39 @@ public class Hangman {
 
     public static void main(String[] args) {
         String secretWord = randomWord(words);
-        char[] letters = new char[secretWord.length()];
-        int guesses = 0;
-        int misses = 0;
-        String guess;
-        char[] missesLetters = new char[6];
-
-        for (int i = 0; i < letters.length; i++) {
-            letters[i] = '_';
-        }
+        char[] wordArr = createCharArray(secretWord.length(), '_');
+        int userGuessesCount = 0;
+        int missesCount  = 0;
+        String userGuess;
+        char[] misseswordArr = new char[6];
 
         while (true) {
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            if(misses == 6){
-                break;
-            }
+            refresh();
+
+            checkForMaxMisses(missesCount, secretWord);
 
             System.out.println(secretWord);
-            printGallows(gallows, misses);
 
-            System.out.print("\nWord: ");
+            printGallowsStage(gallows, missesCount);
 
-            printLetters(letters);
+            printwordArr(wordArr);
 
-            printMisses(missesLetters);
+            printMisses(misseswordArr);
 
-            System.out.print("\n\nGuess: ");
-            guess = scan.nextLine();
+            userGuess = userGuess(scan);
 
-            if (secretWord.contains(String.valueOf(guess))) {
-                updateLetters(secretWord, letters, guess);
-                printLetters(letters);
-                guesses++;
+            if (secretWord.contains(String.valueOf(userGuess))) {
+                updatewordArr(secretWord, wordArr, userGuess);
+                printwordArr(wordArr);
+                userGuessesCount++;
 
-                if(guesses == secretWord.length()){
-                    System.out.println("Win!");
-                    System.exit(0);
-                }
+                checkWin(secretWord, userGuessesCount, missesCount);
 
                 
             } else {
-                updateMisses(missesLetters, guess, misses);
-                printMisses(missesLetters);
-                misses++;
+                updateMisses(misseswordArr, userGuess, missesCount);
+                printMisses(misseswordArr);
+                missesCount++;
             }
         }
 
@@ -134,38 +123,73 @@ public class Hangman {
         return words[(int) (Math.random() * words.length)];
     }
 
-    public static void printGallows(String[] gallows, int misses) {
-        System.out.print(gallows[misses]);
+    public static void refresh(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
-    public static void updateMisses(char[] missesLetters, String guess, int misses) {
-        missesLetters[misses] = guess.charAt(0);
+    public static void checkForMaxMisses(int missesCount, String secretWord) {
+        final int MAX_ALLOWED_MISSES = 6;
+        if (missesCount == MAX_ALLOWED_MISSES) {
+            System.out.print("\n\nYou've reached the maximum allowed misses. You Lose!");
+            System.out.print("\n" + gallows[6] + "\nSECRET WORD: " + secretWord);
+            System.exit(0);
+        }
     }
 
-    public static void printMisses(char[] missesLetters) {
+    public static String userGuess(Scanner scan){
+        System.out.print("\n\nGuess: ");
+        return scan.nextLine();
+    }
+
+    public static void checkWin(String secretWord, int guessesCount, int missesCount){
+        if(guessesCount == secretWord.length()){
+            refresh();
+            System.out.print("\n" + gallows[missesCount] + "\nYou Win!!\nSECRET WORD: " + secretWord);
+            System.exit(0);
+        }
+    }
+
+    public static void printGallowsStage(String[] gallows, int missesCount) {
+    System.out.print(gallows[missesCount]);
+}
+
+    public static void updateMisses(char[] misseswordArr, String userGuess, int missesCount) {
+        misseswordArr[missesCount] = userGuess.charAt(0);
+    }
+
+    public static void printMisses(char[] misseswordArr) {
         System.out.print("\n\nMisses: ");
-        for (char letter : missesLetters) {
+        for (char letter : misseswordArr) {
             System.out.print(letter);
         }
     }
 
 
-    public static void updateLetters(String secretWord, char[] letters, String guess) {
-        char guessChar = guess.charAt(0); // Convertir la conjetura a un solo carácter
+    public static void updatewordArr(String secretWord, char[] wordArr, String userGuess) {
+        char userGuessChar = userGuess.charAt(0); // Convertir la conjetura a un solo carácter
         
-        int index = secretWord.indexOf(guessChar); // Encontrar la primera ocurrencia de la conjetura
+        int index = secretWord.indexOf(userGuessChar); // Encontrar la primera ocurrencia de la conjetura
         
         // Mientras haya ocurrencias de la conjetura en la palabra secreta
         while (index != -1) {
-            letters[index] = guessChar; // Actualizar la letra en la posición correspondiente
-            index = secretWord.indexOf(guessChar, index + 1); // Encontrar la próxima ocurrencia
+            wordArr[index] = userGuessChar; // Actualizar la letra en la posición correspondiente
+            index = secretWord.indexOf(userGuessChar, index + 1); // Encontrar la próxima ocurrencia
         }
     }
 
-    public static void printLetters(char[] letters){
-        System.out.print("\t");
-            for (char letter : letters) {
+    public static void printwordArr(char[] wordArr){
+        System.out.print("\nWord: ");
+            for (char letter : wordArr) {
                 System.out.print(letter +  " ");
             }
+    }
+
+    public static char[] createCharArray(int size, char initialValue) {
+        char[] charArray = new char[size];
+        for (int i = 0; i < charArray.length; i++) {
+            charArray[i] = initialValue;
+        }
+        return charArray;
     }
 }
