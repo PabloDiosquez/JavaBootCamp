@@ -72,6 +72,10 @@ public class Hangman {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
+        playHangman();
+    }
+
+    public static void playHangman(){
         String secretWord = randomWord(words);
         char[] wordArr = createCharArray(secretWord.length(), '_');
         int userGuessesCount = 0;
@@ -88,46 +92,52 @@ public class Hangman {
 
             printGallowsStage(gallows, missesCount);
 
-            printwordArr(wordArr);
+            print("Word: ", wordArr);
 
-            printMisses(misseswordArr);
+            print("Misses: ", misseswordArr);
 
             userGuess = userGuess(scan);
 
             if (secretWord.contains(String.valueOf(userGuess))) {
-                updatewordArr(secretWord, wordArr, userGuess);
-                printwordArr(wordArr);
-                userGuessesCount++;
+                int occurrencesCount = updatewordArr(secretWord, wordArr, userGuess);
+                print("Word: ", wordArr);
+                userGuessesCount += occurrencesCount;
 
                 checkWin(secretWord, userGuessesCount, missesCount);
 
-                
             } else {
                 updateMisses(misseswordArr, userGuess, missesCount);
-                printMisses(misseswordArr);
+                print("Misses: ", misseswordArr);
                 missesCount++;
             }
         }
-
     }
 
-    
-
     /**
-     * Function name: randomWord
-     * 
-     * @param words
-     * @return
+     * Returns a random word from the given array of words.
+     *
+     * @param words An array of strings representing the words to choose from.
+     * @return A randomly selected word from the provided array.
      */
     public static String randomWord(String[] words) {
         return words[(int) (Math.random() * words.length)];
     }
 
-    public static void refresh(){
+    /**
+     * Clears the console screen.
+     */
+    public static void refresh() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
+    /**
+     * Checks if the number of misses has reached the maximum allowed misses.
+     * If so, prints a message indicating loss and the secret word, and exits the program.
+     *
+     * @param missesCount The number of misses made by the player.
+     * @param secretWord  The secret word the player is trying to guess.
+     */
     public static void checkForMaxMisses(int missesCount, String secretWord) {
         final int MAX_ALLOWED_MISSES = 6;
         if (missesCount == MAX_ALLOWED_MISSES) {
@@ -157,31 +167,26 @@ public class Hangman {
     public static void updateMisses(char[] misseswordArr, String userGuess, int missesCount) {
         misseswordArr[missesCount] = userGuess.charAt(0);
     }
-
-    public static void printMisses(char[] misseswordArr) {
-        System.out.print("\n\nMisses: ");
-        for (char letter : misseswordArr) {
-            System.out.print(letter);
-        }
-    }
-
-
-    public static void updatewordArr(String secretWord, char[] wordArr, String userGuess) {
-        char userGuessChar = userGuess.charAt(0); // Convertir la conjetura a un solo carácter
+   
+    public static int updatewordArr(String secretWord, char[] wordArr, String userGuess) {
+        char userGuessChar = userGuess.charAt(0);
         
-        int index = secretWord.indexOf(userGuessChar); // Encontrar la primera ocurrencia de la conjetura
+        int index = secretWord.indexOf(userGuessChar); 
+
+        int occurrencesCount = 0;
         
-        // Mientras haya ocurrencias de la conjetura en la palabra secreta
         while (index != -1) {
-            wordArr[index] = userGuessChar; // Actualizar la letra en la posición correspondiente
-            index = secretWord.indexOf(userGuessChar, index + 1); // Encontrar la próxima ocurrencia
+            wordArr[index] = userGuessChar;
+            index = secretWord.indexOf(userGuessChar, index + 1);
+            occurrencesCount++;
         }
+        return occurrencesCount;
     }
 
-    public static void printwordArr(char[] wordArr){
-        System.out.print("\nWord: ");
-            for (char letter : wordArr) {
-                System.out.print(letter +  " ");
+    public static void print(String message, char[] arr){
+        System.out.print("\n" + message);
+            for (char character : arr) {
+                System.out.print(character +  " ");
             }
     }
 
