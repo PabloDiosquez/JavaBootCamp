@@ -10,7 +10,7 @@ public class Main {
         person.name = "Paul McCartney";
         person.nationality = "UK";
         person.dateOfBirth = "June 18, 1942";
-        person.passport = new String[]{};
+        person.passport = new String[]{"@ABC", person.name, person.nationality, person.dateOfBirth};
         person.seatNumber = 10;
 
         System.out.println(person.name);
@@ -18,7 +18,5 @@ public class Main {
         System.out.println(person.dateOfBirth);
         System.out.println(Arrays.toString(person.passport));
         System.out.println(person.seatNumber);
-    }
-
-        
+    }   
 }
